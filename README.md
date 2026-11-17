@@ -21,6 +21,25 @@ ocupa uns 20 MB de RAM.
 - **Botão power:** abre um menu com Desligar (standby, liga de novo em segundos), Timer de desligar e Reiniciar.
 - **Boot:** abre sozinho ao ligar e impede que os apps instalados iniciem em segundo plano sem você pedir.
 
+## Resultado no aparelho de teste
+
+| | Antes | Depois |
+|---|---|---|
+| RAM disponível na tela inicial | 349 MB | 468 MB |
+| Apps em segundo plano na hora da medição | 7 (cerca de 360 MB) | nenhum |
+| RAM do launcher | 31 a 39 MB (o de fábrica, em 2 processos) | 21 MB (Lume) |
+| Armazenamento livre | 684 MB | 1,2 GB |
+
+O aparelho tem 958 MB de RAM e 4,4 GB de armazenamento para apps e dados. Como ler esses números:
+
+- São medições únicas, não médias. A RAM disponível é o `MemAvailable` de `/proc/meminfo`, e a RAM de cada app é
+  o PSS do `dumpsys meminfo`.
+- **Antes:** o aparelho como estava em uso, na tela inicial de fábrica.
+- **Depois:** 16 minutos após ligar, na tela inicial do Lume, sem abrir nenhum app.
+- Nos primeiros minutos depois de ligar, a RAM disponível fica perto de 350 MB, porque o Google Play Services e a
+  Play Store trabalham no boot. Aos 16 minutos já estava no valor da tabela.
+- O armazenamento veio de desinstalar 8 apps que não eram usados, então depende do que você tem instalado.
+
 ## Compatibilidade
 
 Testado em um projetor vendido como "HY300" que por dentro é um **Amlogic T950S** (`t950s_be311`), com Android 13.

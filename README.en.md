@@ -23,6 +23,25 @@ The interface is in Portuguese only, so this page quotes the on-screen labels in
 - **Power button:** opens a menu with power off (standby, back on in seconds), sleep timer and restart.
 - **Boot:** opens by itself at power-on and stops installed apps from starting in the background on their own.
 
+## Results on the test device
+
+| | Before | After |
+|---|---|---|
+| Available RAM on the home screen | 349 MB | 468 MB |
+| Apps in the background when measured | 7 (about 360 MB) | none |
+| Launcher RAM | 31 to 39 MB (the stock one, in 2 processes) | 21 MB (Lume) |
+| Free storage | 684 MB | 1.2 GB |
+
+The device has 958 MB of RAM and 4.4 GB of storage for apps and data. How to read these numbers:
+
+- They are single measurements, not averages. Available RAM is `MemAvailable` from `/proc/meminfo`, and each
+  app's RAM is the PSS from `dumpsys meminfo`.
+- **Before:** the device as it was being used, on the stock home screen.
+- **After:** 16 minutes after power-on, on Lume's home screen, with no app opened.
+- In the first minutes after power-on, available RAM stays near 350 MB because Google Play Services and the Play
+  Store are busy at boot. At 16 minutes it was already at the value in the table.
+- The storage came from uninstalling 8 apps that were not being used, so it depends on what you have installed.
+
 ## Compatibility
 
 Tested on a projector sold as "HY300" that is an **Amlogic T950S** (`t950s_be311`) inside, running Android 13.
