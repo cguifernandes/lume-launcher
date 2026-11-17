@@ -1,0 +1,23 @@
+# Pacotes de fábrica desativados no aparelho de teste (Amlogic T950S). Não é um script: é o registro do que foi
+# mexido, para poder voltar atrás. Uma linha por pacote: <ação> <pacote>  # motivo
+# Desfazer "disable":            adb shell pm enable <pacote>
+# Desfazer "disable-component":  adb shell pm enable <pacote>/<componente>
+disable com.htc.htclauncherhighenglishd08         # launcher original, substituído pelo Lume (~40 MB de RAM)
+disable com.google.android.katniss                # busca por voz
+disable com.google.android.tvrecommendations      # recomendações de TV (não aparecem no Lume)
+disable com.google.android.syncadapters.calendar  # sincronização de agenda
+disable com.google.android.syncadapters.contacts  # sincronização de contatos
+disable com.android.camera2                       # câmera (o projetor não tem)
+disable com.android.gallery3d                     # galeria
+disable com.droidlogic.musicplayer                # player de música
+disable com.droidlogic.videoplayer                # player de vídeo
+disable com.android.deskclock                     # relógio e alarme
+disable com.droidlogic.miracast                   # espelhamento Miracast
+disable com.droidlogic.mediacenter                # DLNA
+disable com.google.android.leanbacklauncher       # launcher antigo do Google
+disable com.master.apps                           # lista de apps do launcher original
+disable com.define.shellservice                   # executa comandos shell recebidos por intent (risco de segurança)
+disable com.master.accessibility                  # "NetflixMouse", serviço de acessibilidade sempre ativo
+disable com.koushikdutta.superuser                # app de root
+# O Bluetooth (AVRCP) acordava o Prime Video ao ligar, e o Prime acordava a Play Store:
+disable-component com.amazon.avod.thirdpartyclient/com.amazon.avod.voicecontrols.service.PrimeVideoMediaService

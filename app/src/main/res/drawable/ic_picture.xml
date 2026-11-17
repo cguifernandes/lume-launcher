@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- contraste: círculo meio preenchido -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="26dp" android:height="26dp" android:viewportWidth="24" android:viewportHeight="24">
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
+        android:pathData="M12,3a9,9 0,1 0,0.001 0z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M12,3a9,9 0,0 0,0 18z" />
+</vector>

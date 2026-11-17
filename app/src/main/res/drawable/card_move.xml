@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- borda do favorito em modo de mover. É um drawable à parte porque tingir (tint) uma forma
+     só com contorno faz o Android preencher a forma inteira com a cor. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="12dp" />
+    <stroke android:width="3dp" android:color="@color/accent" />
+</shape>

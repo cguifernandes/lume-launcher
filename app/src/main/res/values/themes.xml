@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="fg">#F2F4F8</color>
+    <color name="dim">#8A93A6</color>
+    <color name="accent">#FFB547</color>
+
+    <style name="Lume" parent="android:Theme.DeviceDefault.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg</item>
+        <item name="android:windowShowWallpaper">false</item>
+        <item name="android:colorAccent">@color/accent</item>
+    </style>
+
+    <!-- Painel transparente: dá para ver a imagem enquanto ajusta -->
+    <style name="Lume.Panel">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="Pill">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">13dp</item>
+        <item name="android:paddingEnd">13dp</item>
+        <item name="android:background">@drawable/pill</item>
+        <item name="android:textColor">@color/pill_text</item>
+        <item name="android:drawableTint">@color/pill_text</item>
+        <item name="android:drawablePadding">0dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+</resources>

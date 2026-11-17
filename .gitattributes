@@ -1,0 +1,7 @@
+# Scripts de shell quebram com fim de linha do Windows (CRLF); no Windows o git converteria no checkout.
+*.sh    text eol=lf
+gradlew text eol=lf
+*.bat   text eol=crlf
+*.jar   binary
+*.p12   binary
+*.pk8   binary

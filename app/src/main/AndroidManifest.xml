@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:sharedUserId="android.uid.system">
+
+    <!-- O app roda como android.uid.system, que já passa em qualquer checagem de permissão (Wi-Fi, Bluetooth,
+         alarmes exatos, configurações globais...). As declaradas abaixo são as que o sistema confere pelo manifesto. -->
+    <uses-permission android:name="droidlogic.permission.SYSTEM_CONTROL" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.REBOOT" />
+    <uses-permission android:name="android.permission.DEVICE_POWER" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-feature android:name="android.software.leanback" android:required="false" />
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="Lume"
+        android:theme="@style/Lume">
+
+        <uses-library android:name="droidlogic.software.core" android:required="false" />
+
+        <activity
+            android:name=".HomeActivity"
+            android:clearTaskOnLaunch="true"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|uiMode|density"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:stateNotNeeded="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".BootReceiver"
+            android:directBootAware="true"
+            android:exported="true">
+            <!-- prioridade máxima: estes broadcasts são entregues em fila, um app por vez. Sendo o primeiro, o Lume
+                 abre sem esperar os outros (antes eram ~18 s) e tira da fila os apps que seriam acordados. -->
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <!-- ajuste de relógio: é o que acorda os apps logo depois do boot -->
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+
+        <service
+            android:name=".KeyService"
+            android:exported="true"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/key_service" />
+        </service>
+
+        <activity
+            android:name=".PowerActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleInstance"
+            android:theme="@style/Lume.Panel" />
+
+        <!-- alarme do timer de desligar (Power.setTimer) -->
+        <receiver
+            android:name=".SleepTimerReceiver"
+            android:exported="false" />
+
+        <activity
+            android:name=".AppsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".WifiActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".BluetoothActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PictureActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@style/Lume.Panel" />
+    </application>
+</manifest>
